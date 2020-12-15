@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/music.css">
+</head>
+<body>
+    <h1>STYTH PIAN1</h1>
+    <div class="keys">
+        <div data-key="65" class="key">
+            <!--data-key 속성은 위의 div와 아래 audio를 하나로 묶어주는 속성이라 할 수 있다.-->
+            <kbd>A</kbd>
+            <span class="sound">clap</span>
+        </div>
+        <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <span class="sound">hihat</span>
+        </div>
+        <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <span class="sound">kick</span>
+        </div>
+        <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <span class="sound">openhat</span>
+        </div>
+        <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <span class="sound">boom</span>
+        </div>
+        <div data-key="72" class="key">
+            <kbd>H</kbd>
+            <span class="sound">bride</span>
+        </div>
+        <div data-key="74" class="key">
+            <kbd>J</kbd>
+            <span class="sound">snare</span>
+        </div>
+        <div data-key="75" class="key">
+            <kbd>K</kbd>
+            <span class="sound">tom</span>
+        </div>
+        <div data-key="76" class="key">
+            <kbd>L</kbd>
+            <span class="sound">tink</span>
+        </div>
+    </div>
+    <audio data-key="65" src="sounds/a.wav"></audio>
+    <audio data-key="83" src="sounds/b.wav"></audio> 
+    <audio data-key="68" src="sounds/c.wav"></audio> 
+    <audio data-key="70" src="sounds/d.wav"></audio> 
+    <audio data-key="71" src="sounds/f.wav"></audio>  
+    <audio data-key="72" src="sounds/g.wav"></audio> 
+    <audio data-key="74" src="sounds/h.wav"></audio> 
+    <audio data-key="75" src="sounds/j.wav"></audio> 
+ 
+
+<script>
+    window.addEventListener('keydown', playSound);//window.addeventlistener keydown->키를 누를떄 실행한다는거
+    function playSound(e){
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); //audio와key에 각각 누른 keycode와 일치하는 속성을 가진 요소를 담아줌
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        if(audio){
+        audio.currentTime=0;
+        audio.play();
+        key.classList.add('playing');
+        //시각적 변화를 만들어줌
+        }
+    };
+    const keys=document.querySelectorAll('.keys');
+    keys.forEach(key=> key.addEventListener('transitionend',removeTransition));
+    function removeTransition(e) {
+        if (e.propertyName === "transform") {
+        this.classList.remove("playing");
+        }
+    };
+</script>
+</body>
+</html>
