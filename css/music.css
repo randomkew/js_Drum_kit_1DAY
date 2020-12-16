@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 1.0)),url("../img/ops.jpg");
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 1.0)),url("../ops.jpg");
     background-size: auto 100%;
     background-position: center center;
     min-height: 100vh;  
